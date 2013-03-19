@@ -32,6 +32,21 @@ MARKER.DOUBLE.EPSILON <- 1.e-10
 }
 
 
+.init.map <- function(list.of.maps.as.list) {
+    for (n in names(list.of.maps.as.list)) {
+        map.as.list <- list.of.maps.as.list[[n]]
+        dists <- .compute.dists(map.as.list$locus)
+        map.as.list$dist.to <- dists$to
+        map.as.list$dist.from <- dists$from
+        doubles <- .find.doubles(map.as.list)
+        attr(map.as.list, 'doubles') <- doubles
+        attr(map.as.list, 'chrom.name') <- n
+        list.of.maps.as.list[[n]] <- map.as.list
+    }
+    list.of.maps.as.list
+}
+
+
 # extracts the data for ONE chromosome from a row possibly padded with NA's.
 .read.chrom <- function(chromvec, i) {
     chrname <- substring(chromvec[i], 2)   # strip leading *
@@ -113,7 +128,7 @@ MARKER.DOUBLE.EPSILON <- 1.e-10
     # otherwise, NA's are ignored.
     # any FALSE results in all being set to FALSE (NA's included).
     # otherwise, all are set to TRUE (NA's included).
-    if (nrow(doubles) > 0) {
+    if (!is.null(doubles) && nrow(doubles) > 0) {
         reord.doubles <- cumsum(map.markers %in% mark)
         for (d in 1:nrow(doubles)) {
             start.i <- reord.doubles[doubles[d, 1]]

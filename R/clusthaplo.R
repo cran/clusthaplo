@@ -280,7 +280,7 @@ get.kinship.matrix <- function() {
         collect.all(lapply(1:n.replicates,
                            function(i) {
                                sim.clu <- clusthaplo(chrom.p, chrom.d,
-                                                     geno.simulator(chrom.p[[1]], .gen))
+                                                     geno.simulator(.test.map[[.selected.chromosome]], .gen))
                                sim.clu$config(config=config())
                                collect.replicate(do.a.chrom(.selected.chromosome, sim.clu))
                            }))
@@ -668,7 +668,7 @@ clusthaplo <- function(haplotypes.map,
 
     # read data
     if(class(haplotypes.map) == 'list') {
-        .clu$.par.map <- haplotypes.map
+        .clu$.par.map <- .init.map(haplotypes.map)
     } else if(class(haplotypes.map) == 'character' && length(haplotypes.map) == 1) {
         .clu$.par.map <- .read.map(haplotypes.map)
     } else {
@@ -677,7 +677,7 @@ clusthaplo <- function(haplotypes.map,
     if(is.null(mcqtl.consensus.map)) {
         .clu$.desc.map <- .clu$.par.map
     } else if(class(mcqtl.consensus.map) == 'list') {
-        .clu$.desc.map <- mcqtl.consensus.map
+        .clu$.desc.map <- .init.map(mcqtl.consensus.map)
     } else if(class(mcqtl.consensus.map) == 'character' && length(mcqtl.consensus.map) == 1) {
         .clu$.desc.map <- .read.map(mcqtl.consensus.map)
     } else {
