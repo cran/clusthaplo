@@ -13,22 +13,22 @@ clusthaplo(haplotypes.map, mcqtl.consensus.map, marker.data,
 }
 \arguments{
     \item{haplotypes.map}{
-        filename or named list of matrices or data.frames (one for each chromosome) for the genetic maps of the haplotypes
+        filename or named list of matrices or data.frames (one for each chromosome) for the genetic maps of the haplotypes. The expected file format is the MapMaker format.
     }
     \item{mcqtl.consensus.map}{
-        filename or named list of matrices or data.frames (one for each chromosome) for the MCQTL consensus maps
+        filename or named list of matrices or data.frames (one for each chromosome) for the MCQTL consensus maps. The expected file format is the same as for \code{haplotypes.map}.
     }
     \item{marker.data}{
-        filename or matrix or data.frame for the genotype data (one column per parent)
+        filename or matrix or data.frame for the genotype data (one column per parent). The expected file format is a data table with genotyped individuals as columns and markers as rows, with row names and column names.
     }
     \item{kinship.matrix}{
-        filename or matrix or data.frame giving the pairwise kinship coefficients between all the haplotypes
+        filename or matrix or data.frame giving the pairwise kinship coefficients between all the haplotypes. The expected file format is a simple numeric matrix giving the kinship coefficients for the genotyped individuals in the same order they are given in the \code{marker.data} file.
     }
     \item{na.strings}{
         defines which NA strings we may encounter while reading the marker data
     }
     \item{discard.unknown.markers}{
-        if \code{TRUE}, all the markers that don't have genotype data are removed from the map that is used to compute the similarities.
+        if \code{TRUE} (the highly recommended default), all the markers that don't have genotype data are removed from the map that is used to compute the similarities.
         Otherwise, those markers are added to the genotype data with \code{NA} observations for all individuals.
     }
     \item{...}{

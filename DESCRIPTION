@@ -1,7 +1,7 @@
 Package: clusthaplo
-Version: 1.1
-Date: 2013-03-19
-Title: Clusthaplo
+Version: 1.2
+Date: 2013-07-05
+Title: Clustering of haplotypes
 Authors@R: c(person("Damien", "Leroux", role = c("aut", "cre"), email =
         "damien.leroux@toulouse.inra.fr"), person("Brigitte", "Mangin",
         role = "aut", email="brigitte.mangin@toulouse.inra.fr"),
@@ -19,9 +19,9 @@ Description: Performs clustering of haplotypes that ought to share a
 License: GPL (>= 2)
 URL: http://www.r-project.org,
         https://mulcyber.toulouse.inra.fr/projects/clusthaplo/
-Packaged: 2013-03-19 15:35:05 UTC; dleroux
+Packaged: 2013-07-05 07:48:02 UTC; dleroux
 Author: Damien Leroux [aut, cre], Brigitte Mangin [aut], Sylvain Jasson
         [aut], Abdelaziz Rahmani [aut]
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-03-19 17:43:34
+Date/Publication: 2013-07-05 11:52:58

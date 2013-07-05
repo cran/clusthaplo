@@ -200,7 +200,7 @@ MARKER.DOUBLE.EPSILON <- 1.e-10
     if (max(abs(subref.map$locus - submap$locus)) > MAP.SIZE.TOLERANCE) {
         stop("The difference in size between the haplotypes map and MCQTL consensus genetic maps MUST NOT exceed ", MAP.SIZE.TOLERANCE, " cM.")
     }
-    approx(y=subref.map$locus, x=submap$locus, xout=map$locus)$y
+    approx(y=subref.map$locus, x=submap$locus, xout=map$locus, rule=2)$y
 }
 
 

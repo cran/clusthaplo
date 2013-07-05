@@ -26,11 +26,14 @@ write.xml <- function(closure) {
     #if(!file.exists(prefix)) {
     #    dir.create(prefix)
     #}
-
     make.pos <- function(pa, i, pos, clos) {
         loci <- attr(clos, "loci")
         chrom.name <- attr(clos, "chromosome")
-        mrk <- which(.desc.map[[chrom.name]]$map$locus == loci[pos])
+        scan.map <- .desc.map[[chrom.name]]
+        mrk <- which(scan.map$locus == loci[pos])
+        #.debug.out(scan.map$locus, "\n")
+        #mrk <- which(abs(scan.map$locus - loci[pos]) < 1.e-5)
+        #.debug.out("Markers at ", loci[pos], ":", paste(mrk, collapse=","), "\n")
 
         prob <- clos[pos, pa] == i
 
@@ -41,7 +44,8 @@ write.xml <- function(closure) {
         } else {
             lapply(mrk, function(m) {
                    list('            <POSITION value="', loci[pos],
-                     '" marker="yes" name="', as.character(.desc.map[[chrom.name]]$map$markers[m]),
+                     #'" marker="yes" name="', as.character(.desc.map[[chrom.name]]$map$markers[m]),
+                     '" marker="yes" name="', as.character(scan.map$markers[m]),
                      '" weight="1">\n', mprob, '            </POSITION>\n')
                  })
         }
